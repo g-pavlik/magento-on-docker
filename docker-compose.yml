@@ -1,0 +1,27 @@
+data:
+  image: ubuntu
+  volumes:
+   - ./N3/app:/var/www/n3_app
+php:
+  container_name: php
+  image: php:5.6-fpm
+  expose:
+    - "8000"
+  volumes:
+    - ./etc/php5/fpm/conf.d/:/etc/php5/fpm/conf.d/
+    - ./etc/php5/fpm/pool.d/:/etc/php5/fpm/pool.d/
+  volumes_from:
+    - data
+web:
+  image: nginx
+  volumes:
+    - ./etc/nginx/sites-available/:/etc/nginx/sites-enabled/
+    - ./etc/nginx/ssl/:/etc/nginx/ssl/
+    - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+    - ./etc/nginx/magento_base:/etc/nginx/magento_base
+  volumes_from:
+    - data
+  ports:
+    - 8080:443
+  links:
+    - php
