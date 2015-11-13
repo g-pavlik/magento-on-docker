@@ -2,7 +2,7 @@ data:
   container_name: data
   image: ubuntu
   volumes:
-   - ./N3/app:/var/www/n3_app
+   - ./N3:/var/www/n3_app
 php:
   container_name: php
   image: php:5.6-fpm
