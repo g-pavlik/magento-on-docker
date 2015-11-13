@@ -6,8 +6,6 @@ data:
 php:
   container_name: php
   image: php:5.6-fpm
-  expose:
-    - "8000"
   volumes:
     - ./etc/php5/fpm/pool.d/www.conf:/etc/php5/fpm/pool.d/www.conf
     - ./etc/php5/fpm/conf.d/99.dev:/etc/php5/fpm/conf.d/99-dev
