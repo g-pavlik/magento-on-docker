@@ -1,0 +1,80 @@
+server_tokens off;
+
+location / {
+    index index.php;
+    try_files $uri $uri/ @handler;
+}
+
+# Deny access to root files that could be hanging around (composer, LICENSE, build 
+# xml files...)
+location ~* ^/.+\.(xml|lock|sh|txt)$ {
+    deny all;
+    return 404;
+} 
+
+# Deny access to common magento root .php files
+location ~* ^/(install.php|cron.php|get.php|api.php)$ {
+    deny all;
+    return 404;
+}
+
+# Deny access to specific directories no one
+# in particular needs access to anyways.
+location /app/ { deny all; return 404; }
+location /build/ { deny all; return 404; }
+location /configuration/ { deny all; return 404; }
+location /docs/ { deny all; return 404; }
+location /downloader/ { deny all; return 404; }
+location /includes/ { deny all; return 404; }
+location /lib/ { deny all; return 404; }
+location /media/downloadable/ { deny all; return 404; }
+location /report/config.xml { deny all; return 404; }
+location /shell/ { deny all; return 404; }
+location /taf/ { deny all; return 404; }
+location /var/ { deny all; return 404; }
+location /vendor/ { deny all; return 404; }
+
+# Deny access to any markdown file
+location ~*\.md$ {
+     deny all;
+     return 404;
+}
+
+# Deny all attempts to access hidden files
+# such as .htaccess, .htpasswd, etc...
+location ~ /\. {
+     deny all;
+     access_log off;
+     log_not_found off;
+     return 404;
+}
+
+# This redirect is added so to use Magentos
+# common front handler when handling incoming URLs.
+location @handler {
+    rewrite / /index.php;
+}
+
+# Forward paths such as /js/index.php/x.js
+# to their relevant handler.
+location ~ .php/ {
+    rewrite ^(.*.php)/ $1 last;
+}
+
+location ~* \.(jpe?g|gif|png|css|js|ico|xml)$ {
+    access_log        off;
+    log_not_found     off;
+    expires           360d;
+}
+
+location = /favicon.ico { log_not_found off; access_log off; }
+location = /robots.txt  { access_log off; log_not_found off; }
+
+# SSL optimization
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ssl_ciphers "HIGH:!aNULL:!MD5 or HIGH:!aNULL:!MD5:!3DES";
+ssl_prefer_server_ciphers on;
+ssl_session_cache shared:SSL:10m;
+ssl_session_timeout 10m;
+
+

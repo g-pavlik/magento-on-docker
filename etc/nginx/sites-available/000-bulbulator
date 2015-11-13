@@ -1,0 +1,35 @@
+server {
+  listen 443;
+  server_name ~^(?<website>[\w\d]+)\.docker.dev$;
+
+  ssl on;
+  ssl_certificate /etc/nginx/ssl/cert.pem;
+  ssl_certificate_key /etc/nginx/ssl/key.pem;
+
+  access_log on;
+  error_log on;
+
+  include magento_base;
+  root /var/www/n3_app/;
+
+  index index.php;
+
+  location ~ .php$ {
+    if (!-e $request_filename) {
+      rewrite / /index.php last;
+    }
+    proxy_cache off; # disable fpm caching
+
+    # fastcgi_pass unix:/var/run/php5-fpm.sock;
+    fastcgi_pass php:8000;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_param MAGE_RUN_CODE $website;
+    fastcgi_param MAGE_RUN_TYPE website;
+    fastcgi_param MAGE_IS_DEVELOPER_MODE 1;
+    fastcgi_param APPLICATION_ENV development;
+    fastcgi_read_timeout 180;
+
+    include fastcgi_params;
+
+  }
+}

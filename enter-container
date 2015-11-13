@@ -1,0 +1,5 @@
+#!/bin/bash
+# http://www.sebastien-han.fr/blog/2014/01/27/access-a-container-without-ssh/
+# you need nsenter available from util-linux
+PID=$(docker inspect --format "{{ .State.Pid }}"  $1)
+sudo ~/bin/nsenter --target $PID --mount --uts --ipc --net --pid

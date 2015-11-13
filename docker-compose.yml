@@ -1,4 +1,5 @@
 data:
+  container_name: data
   image: ubuntu
   volumes:
    - ./N3/app:/var/www/n3_app
@@ -8,12 +9,13 @@ php:
   expose:
     - "8000"
   volumes:
-    - ./etc/php5/fpm/conf.d/:/etc/php5/fpm/conf.d/
-    - ./etc/php5/fpm/pool.d/:/etc/php5/fpm/pool.d/
+    - ./etc/php5/fpm/pool.d/www.conf:/etc/php5/fpm/pool.d/www.conf
+    - ./etc/php5/fpm/conf.d/99.dev:/etc/php5/fpm/conf.d/99-dev
   volumes_from:
     - data
 web:
   image: nginx
+  container_name: web
   volumes:
     - ./etc/nginx/sites-available/:/etc/nginx/sites-enabled/
     - ./etc/nginx/ssl/:/etc/nginx/ssl/
