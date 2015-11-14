@@ -3,11 +3,21 @@ data:
   image: ubuntu
   volumes:
    - ./N3:/var/www/n3_app
+   - ./db/eset.latest.dump.sql:/tmp/db/eset.latest.dump.sql
 php:
   container_name: php
   image: kinetic:php
   volumes:
     - ./etc/php5/fpm/conf.d/:/usr/local/etc/php/conf.d/
+  volumes_from:
+    - data
+  links:
+    - db
+db:
+  container_name: db
+  image: mariadb:5.5
+  environment:
+    MYSQL_ROOT_PASSWORD: root
   volumes_from:
     - data
 web:

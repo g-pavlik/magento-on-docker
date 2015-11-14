@@ -21,5 +21,7 @@ RUN curl -L -o redis.tar.gz https://github.com/phpredis/phpredis/archive/2.2.7.t
 
 RUN yes "" | pecl install uopz
 
+RUN docker-php-ext-install pdo_mysql
+
 #CMD ["php-fpm"]
 #EXPOSE 9000
