@@ -35,12 +35,12 @@ Current workaround: set up beakpoint behind it, cross your fingers and press F9 
 extra careful) - this makes it little bit PITA to treat as dev env yet.
 
 ## Things to improve:
-[ ] move BBL envs from docker-compose.yml to env file
-[ ] fix xdebug issues
-[ ] (optional) use different DB's for different branches maybe (for quick switches)
-[ ] fulfillment doesn't work - need to check networking stuff with docs vs our VPN
-[x] Bulbulating should probably be run outside of php container (this is complex issue)
-[x] after installation redis config should be automatically changed to redis
-[x] composer cache seems to ignore cache's from data volume
-[x] after first `compose install` it uses cache, but after restarting containers probably not
-[x] composer has some issues with github authentication (token can help?)
+- [ ] move BBL envs from docker-compose.yml to env file
+- [ ] fix xdebug issues
+- [ ] (optional) use different DB's for different branches maybe (for quick switches)
+- [ ] fulfillment doesn't work - need to check networking stuff with docs vs our VPN
+- [x] Bulbulating should probably be run outside of php container (this is complex issue)
+- [x] after installation redis config should be automatically changed to redis
+- [x] composer cache seems to ignore cache's from data volume
+- [x] after first `compose install` it uses cache, but after restarting containers probably not
+- [x] composer has some issues with github authentication (token can help?)
