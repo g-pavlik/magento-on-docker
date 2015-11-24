@@ -20,8 +20,27 @@ RUN curl -L -o redis.tar.gz https://github.com/phpredis/phpredis/archive/2.2.7.t
     && make install
 
 RUN yes "" | pecl install uopz
+RUN yes "" | pecl install xdebug
 
 RUN docker-php-ext-install pdo_mysql
+
+# move this later up
+RUN apt-get install -y git
+
+RUN apt-get install -y nodejs npm
+
+RUN npm install --global bower
+RUN npm install --global 'coffee-script@1.8.0'
+
+
+RUN apt-get install -y nodejs-legacy npm
+
+#tmp - we should rather call docker from outside
+RUN apt-get install -y mysql-client-5.5
+
+RUN docker-php-ext-install zip
+
+WORKDIR "/var/www/kinetic"
 
 #CMD ["php-fpm"]
 #EXPOSE 9000

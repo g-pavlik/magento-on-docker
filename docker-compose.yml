@@ -2,8 +2,12 @@ data:
   container_name: data
   image: ubuntu
   volumes:
-   - ./N3:/var/www/n3_app
-   - ./db/eset.latest.dump.sql:/tmp/db/eset.latest.dump.sql
+   - ./N3/:/var/www/kinetic
+   - ./data-root/tmp/media:/tmp/media
+   - ./data-root/tmp/repos:/tmp/repos
+   - ./data-root/tmp/eset.latest.dump.sql:/tmp/eset.latest.dump.sql
+   - ./data-root/home/root/.composer:$HOME/.composer
+   - ./data-root/home/root/.cache:$HOME/.cache
 php:
   container_name: php
   image: kinetic:php
@@ -13,6 +17,10 @@ php:
     - data
   links:
     - db
+    - redis
+redis:
+  container_name: redis
+  image: redis:3
 db:
   container_name: db
   image: mariadb:5.5
@@ -31,6 +39,6 @@ web:
   volumes_from:
     - data
   ports:
-    - 8080:443
+    - 443:443
   links:
     - php

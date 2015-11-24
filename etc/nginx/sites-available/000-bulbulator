@@ -1,16 +1,17 @@
 server {
   listen 443;
-  server_name ~^(?<website>[\w\d]+)\.docker.dev$;
+  server_name ~^(?<website>[\w\d]+)\-(?<branch>[\w\d\-]+)\-bbl\.docker\.dev$;
+
 
   ssl on;
   ssl_certificate /etc/nginx/ssl/cert.pem;
   ssl_certificate_key /etc/nginx/ssl/key.pem;
 
-  access_log on;
-  error_log on;
+  access_log stdout;
+  error_log stderr;
 
   include magento_base;
-  root /var/www/n3_app/;
+  root /var/www/kinetic;
 
   index index.php;
 
