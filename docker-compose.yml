@@ -7,6 +7,7 @@ data:
    - ./data-root/tmp/repos:/tmp/repos
    - ./data-root/tmp/eset.latest.dump.sql:/tmp/eset.latest.dump.sql
    - ./data-root/home/root/.composer:$HOME/.composer
+   - ./data-root/home/root/.composer:/root/.composer
    - ./data-root/home/root/.cache:$HOME/.cache
 php:
   container_name: php
@@ -18,6 +19,19 @@ php:
   links:
     - db
     - redis
+  environment:
+    MYSQL_DB_HOST: db
+    MYSQL_DB_NAME: kinetic
+    MYSQL_USER: root
+    MYSQL_PASSWORD: root
+    STORE_URL: http://kinetic.docker.dev
+    STORE_URL_SECURE: https://kinetic.docker.dev
+    SETUP_DIR: /var/www/kinetic
+    STABILITY: prep
+    BRANCH: unknown
+    ENV_NAME: prep
+    REDIS_HOST: redis
+    WEBSITE: eset
 redis:
   container_name: redis
   image: redis:3

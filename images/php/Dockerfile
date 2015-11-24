@@ -40,6 +40,9 @@ RUN apt-get install -y mysql-client-5.5
 
 RUN docker-php-ext-install zip
 
+RUN apt-get install -y libxml2 libxml2-dev
+RUN docker-php-ext-install soap
+
 WORKDIR "/var/www/kinetic"
 
 #CMD ["php-fpm"]
