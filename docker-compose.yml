@@ -2,7 +2,7 @@ data:
   container_name: data
   image: ubuntu
   volumes:
-   - ./N3/:/var/www/kinetic
+   - ./app/:/var/www/kinetic
    - ./data-root/tmp/media:/tmp/media
    - ./data-root/tmp/repos:/tmp/repos
    - ./data-root/tmp/eset.latest.dump.sql:/tmp/eset.latest.dump.sql
