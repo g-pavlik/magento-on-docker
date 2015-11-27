@@ -1,3 +1,4 @@
 N3/
 /vendor/
 .env.local
+data-root/
