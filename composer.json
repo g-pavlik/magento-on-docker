@@ -1,0 +1,11 @@
+{
+    "name": "pawlik/kinetic-dockerized",
+    "description": "Run Nexway's N3/Kinetic system on docker images",
+    "authors": [
+        {
+            "name": "Grzegorz Pawlik",
+            "email": "grzegorzpawlik@gmail.com"
+        }
+    ],
+    "require": {}
+}

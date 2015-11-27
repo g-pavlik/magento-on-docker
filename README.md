@@ -26,6 +26,15 @@ now preffered way to install N3 would be:
 
 all necessary envs are defined in [docker-compose.yml](docker-compose.yml) on php container
 
+## ENVs
+defaults sit's in (.env.defaults)[.env.defaults] and those should be as generic as possible and sufficient enough
+to allow you to run all required docker images (assuming you'll point kinetic.docker.dev to your localhost in `/etc/hosts`)
+
+You can override those ENVs in .env.local, but don't commit changes to this file (it's in repo, because docker compose
+will fail if we define non existing env file in (docker-compose.yml)[docker-compose.yml])
+
+For one time ENV set up, use -e switch: `docker-compose run -e DROP_DB=true php shell/bulbulator/bulbulate.sh`
+
 ## Xdebug
 it has some annoying issue - when debugging on PHPStorm10 - it triggers Fatal error about
 uninitialized static variable whenever you try to step-over such statement
@@ -35,10 +44,10 @@ Current workaround: set up beakpoint behind it, cross your fingers and press F9 
 extra careful) - this makes it little bit PITA to treat as dev env yet.
 
 ## Things to improve:
-- [ ] move BBL envs from docker-compose.yml to env file
+- [ ] make this package installable by composer
+- [x] move BBL envs from docker-compose.yml to env file
 - [ ] fix xdebug issues
-- [ ] (optional) use different DB's for different branches maybe (for quick switches)
-- [ ] fulfillment doesn't work - need to check networking stuff with docs vs our VPN
+- [ ] fulfillment doesn't work - need to check networking stuff with docs vs our VPN (check DNS config for docker-compose)
 - [x] Bulbulating should probably be run outside of php container (this is complex issue)
 - [x] after installation redis config should be automatically changed to redis
 - [x] composer cache seems to ignore cache's from data volume

@@ -39,4 +39,6 @@ RUN yes "" | pecl install xdebug
 RUN npm install --global bower
 RUN npm install --global 'coffee-script@1.8.0'
 
+RUN apt-get install -y mysql-client
+
 WORKDIR "/var/www/kinetic"
