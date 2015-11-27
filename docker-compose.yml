@@ -11,7 +11,7 @@ data:
    - ./data-root/home/root/.cache:$HOME/.cache
 php:
   container_name: php
-  image: kinetic:php
+  image: pawlik/kinetic-php:5.5
   volumes:
     - ./etc/php5/fpm/conf.d/:/usr/local/etc/php/conf.d/
   volumes_from:

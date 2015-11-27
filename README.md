@@ -1,21 +1,12 @@
 ## Getting started
 
-
 Assuming you have docker up and running. Check issues below or this
 [gist](https://gist.github.com/pawlik/8d0d2e42475a0ff7a6ad) for more help.
 
-clone Kinetic/N3 app into this project - N3 catalogue
+clone (or symlink) Kinetic/N3 app into this project - N3 catalogue
 switch to (my branch)[https://github.com/pawlik/N3/tree/docker-version] or if
 (this PR is accepted)[https://github.com/NexwayGroup/N3/pull/2711] you can use whatever branch in sync with it
 
-
-```bash
-cd images/php
-docker build -t kinetic:php .
-```
-This should build custom php image we're using (check php node in [docker-compose.yml](docker-compose.yml))
-
-Then in main catalogue:
 ```
 docker-compose up -d
 ```
@@ -44,7 +35,7 @@ Current workaround: set up beakpoint behind it, cross your fingers and press F9 
 extra careful) - this makes it little bit PITA to treat as dev env yet.
 
 ## Things to improve:
-- [ ] make this package installable by composer
+- [ ] ?? make this package installable by composer
 - [x] move BBL envs from docker-compose.yml to env file
 - [ ] fix xdebug issues
 - [ ] fulfillment doesn't work - need to check networking stuff with docs vs our VPN (check DNS config for docker-compose)
