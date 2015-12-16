@@ -5,7 +5,7 @@ data:
    - ./app/:/var/www/kinetic
    - ./data-root/tmp/media:/tmp/media
    - ./data-root/tmp/repos:/tmp/repos
-   - ./data-root/tmp/eset.latest.dump.sql:/tmp/eset.latest.dump.sql
+   - ./data-root/tmp/db:/tmp/db
    - ./data-root/home/root/.composer:$HOME/.composer
    - ./data-root/home/root/.composer:/root/.composer
    - ./data-root/home/root/.cache:$HOME/.cache
@@ -46,3 +46,11 @@ web:
     - 443:443
   links:
     - php
+totem:
+  image: pawlik/kinetic-totem
+  container_name: totem
+  volumes_from:
+    - data
+  links:
+    - web
+    - web:kinetic.docker.dev

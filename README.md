@@ -31,14 +31,15 @@ it has some annoying issue - when debugging on PHPStorm10 - it triggers Fatal er
 uninitialized static variable whenever you try to step-over such statement
 [like here](https://github.com/NexwayGroup/N3-Magento-Core/blob/8f531a2258794303f505455c2011992d336ac850/app/Mage.php#L666)
 
-Current workaround: set up beakpoint behind it, cross your fingers and press F9 (there's a lot of such places, so be
+Current workaround: set up breakpoint behind it, cross your fingers and press F9 (there's a lot of such places, so be
 extra careful) - this makes it little bit PITA to treat as dev env yet.
 
 ## Things to improve:
-- [ ] ?? make this package installable by composer
-- [x] move BBL envs from docker-compose.yml to env file
 - [ ] fix xdebug issues
-- [ ] fulfillment doesn't work - need to check networking stuff with docs vs our VPN (check DNS config for docker-compose)
+- [ ] fulfillment doesn't work -
+  - need to check networking stuff with docs vs our VPN (check DNS config for docker-compose)
+  - or (maybe preferred) use tunnel service (localtunnel.me)
+- [x] move BBL envs from docker-compose.yml to env file
 - [x] Bulbulating should probably be run outside of php container (this is complex issue)
 - [x] after installation redis config should be automatically changed to redis
 - [x] composer cache seems to ignore cache's from data volume

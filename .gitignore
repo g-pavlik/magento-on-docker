@@ -1,4 +1,4 @@
-N3/
+app/
 /vendor/
 .env.local
 data-root/
