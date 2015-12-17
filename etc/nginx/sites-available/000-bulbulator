@@ -4,8 +4,8 @@ server {
 
 
   ssl on;
-  ssl_certificate /etc/nginx/ssl/cert.pem;
-  ssl_certificate_key /etc/nginx/ssl/key.pem;
+  ssl_certificate /etc/nginx/ssl/nginx.crt;
+  ssl_certificate_key /etc/nginx/ssl/nginx.key;
 
   access_log stdout;
   error_log stderr;
