@@ -54,3 +54,7 @@ totem:
   links:
     - web
     - web:kinetic.docker.dev
+    - mailcatcher
+mailcatcher:
+  image: schickling/mailcatcher
+  container_name: mailcatcher
