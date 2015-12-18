@@ -55,6 +55,9 @@ totem:
     - web
     - web:kinetic.docker.dev
     - mailcatcher
+  env_file:
+    - .env.defaults
+    - .env.local
 mailcatcher:
   image: schickling/mailcatcher
   container_name: mailcatcher
