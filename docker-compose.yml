@@ -32,6 +32,9 @@ db:
     MYSQL_ROOT_PASSWORD: root
   volumes_from:
     - data
+  env_file:
+    - .env.defaults
+    - .env.local
 web:
   image: nginx
   container_name: web
