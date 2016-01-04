@@ -49,18 +49,28 @@ web:
     - 443:443
   links:
     - php
+node:
+  image: node:0.10.41
+  working_dir: /var/www/kinetic/
+  env_file:
+    - .env.defaults
+    - .env.local
 totem:
-  image: pawlik/kinetic-totem
+  extends: node
+  working_dir: /var/www/kinetic/tests/totem
   container_name: totem
-  volumes_from:
-    - data
   links:
     - web
     - web:kinetic.docker.dev
     - mailcatcher
-  env_file:
-    - .env.defaults
-    - .env.local
+  volumes_from:
+    - data
+mocha:
+  extends: node
+  container_name: mocha
+  working_dir: /var/www/kinetic/
+  volumes_from:
+    - data
 mailcatcher:
   image: schickling/mailcatcher
   container_name: mailcatcher
